@@ -1,16 +1,76 @@
-<h1 style="text-align:center;">
-  <img src="https://upload.wikimedia.org/wikipedia/ar/thumb/4/47/FC_Barcelona_%28crest%29.svg/1200px-FC_Barcelona_%28crest%29.svg.png" alt="Barça TV Logo" style="height:60px;vertical-align:middle;margin-right:10px;">
-  BARÇA TV
-</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Barça TV - beIN Sports</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: #0b1220;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      background-color: #0b1220;
+    }
+    .header img {
+      height: 60px;
+      margin-right: 15px;
+    }
+    .header h1 {
+      font-size: 28px;
+      margin: 0;
+    }
+    .channel-image {
+      display: block;
+      margin: 30px auto;
+      width: 90%;
+      max-width: 600px;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .channel-image:hover {
+      transform: scale(1.03);
+    }
+    .video-container {
+      display: none;
+      margin: 30px auto;
+      width: 90%;
+      max-width: 800px;
+    }
+    video {
+      width: 100%;
+      border-radius: 15px;
+    }
+  </style>
+</head>
+<body>
 
-<div style="background-color:#111827;margin:20px;border-radius:12px;overflow:hidden;box-shadow:0 0 10px #000;">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Qatar_2022_Al_Bayt_Stadium.jpg" alt="beIN Sports Stadium" style="width:100%;display:block;">
-  <div style="padding:15px;">
-    <h2 style="margin:0 0 10px;font-size:22px;color:white;">beIN SPORTS</h2>
-    <p style="margin:0 0 10px;font-size:16px;color:#ccc;">Watch beIN Sports Live</p>
-    <video controls autoplay style="width:100%;border-radius:10px;outline:none;">
+  <div class="header">
+    <img src="https://i.ibb.co/Tqgw7yTf/file-0000000004b061f4b928779212faf6c1.png" alt="Barça TV Logo">
+    <h1>BARÇA TV</h1>
+  </div>
+
+  <img src="https://i.ibb.co/tMHj4d6g/file-0000000039e061f4bae2112c2afa8f72.png" alt="beIN Sports" class="channel-image" onclick="showPlayer()">
+
+  <div class="video-container" id="player">
+    <video controls autoplay>
       <source src="http://157.245.71.30:8080/hls/stream.m3u8" type="application/x-mpegURL">
       Your browser does not support the video tag.
     </video>
   </div>
-</div>
+
+  <script>
+    function showPlayer() {
+      document.getElementById('player').style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
