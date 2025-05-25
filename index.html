@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Barça TV - beIN Sports</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <style>
     body {
       background-color: #0b1220;
@@ -60,15 +61,30 @@
   <img src="https://i.ibb.co/tMHj4d6g/file-0000000039e061f4bae2112c2afa8f72.png" alt="beIN Sports" class="channel-image" onclick="showPlayer()">
 
   <div class="video-container" id="player">
-    <video controls autoplay>
-      <source src="http://157.245.71.30:8080/hls/stream.m3u8" type="application/x-mpegURL">
-      Your browser does not support the video tag.
-    </video>
+    <video id="video" controls autoplay></video>
   </div>
 
   <script>
     function showPlayer() {
       document.getElementById('player').style.display = 'block';
+      var video = document.getElementById('video');
+      var videoSrc = "http://157.245.71.30:8080/hls/stream.m3u8";
+
+      if (Hls.isSupported()) {
+        var hls = new Hls();
+        hls.loadSource(videoSrc);
+        hls.attachMedia(video);
+        hls.on(Hls.Events.MANIFEST_PARSED, function () {
+          video.play();
+        });
+      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = videoSrc;
+        video.addEventListener('loadedmetadata', function () {
+          video.play();
+        });
+      } else {
+        alert("متصفحك لا يدعم تشغيل البث المباشر.");
+      }
     }
   </script>
 
